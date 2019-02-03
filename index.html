@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> -->
+
+</head>
+<body>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Calvin & Hobbes Word Guess</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <h2>Stats</h2>
+                <h4>Total Wins</h4>
+                <h5 id="totalWins"></h5>
+                <h4>Current Guesses Remaining</h4>
+                <h5 id="remainingGuesses"></h5>
+            </div>
+            <div class="col-lg-8">
+                <h3>Current Word</h3>
+                <h5 id="currentWord"></h5>
+                <h4>Letters Guessed</h4>
+                <h3 id="guessedLetters"></h3>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="assets/javascript/game.js"></script> -->
+    <div id="empty-div"></div>
+
+    <!-- We now create a new JavaScript script. -->
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var wordBank = 
+        [
+            "calvin", 
+            "hobbes", 
+            "susie", 
+            "rosalyn", 
+            "wormwood", 
+            "moe", 
+            "spacemanspiff", 
+            "watterson", 
+            "transmogrifier", 
+            "eleventeen", 
+            "calvinball",
+        ];
+        var blankSpaces = [];
+        var spaces;
+        var userGuess;
+        var wordChosen;
+        var remaininLetters;
+        var wrongGuess = [];
+
+        function wordChoice() {
+            var wordChosen = wordBank[Math.floor(Math.random() * wordBank.length)];
+            console.log(wordChosen);
+            for (var i = 0; i < wordChosen.length; i++) {
+                blankSpaces[i] = "_";
+            }
+            // blankSpaces.split("");
+            var guessesRemaining = wordChosen.length + 8;
+            remainingLetters = wordChosen.length;
+           
+            document.getElementById("currentWord").innerHTML = blankSpaces.join(" ");
+           
+            document.getElementById("remainingGuesses").innerHTML = guessesRemaining;
+           
+            document.onkeyup = function(event) {
+                guessesRemaining--;
+
+                // Determines which key was pressed.
+                var userGuess = event.key;
+            
+            for (var j = 0; j < wordChosen.length; j++) {
+                if (wordChosen[j] === userGuess) {
+                blankSpaces[j] = userGuess;
+                remainingLetters--;
+                } else if (wordChosen[j] !== userGuess) {
+                    wrongGuess = userGuess;
+                    wrongGuess.unshift();
+                    document.getElementById("guessedLetters").innerHTML = wrongGuess;
+                }
+                }
+                
+            document.getElementById("currentWord").innerHTML = blankSpaces.join(" ");
+            document.getElementById("remainingGuesses").innerHTML = guessesRemaining;
+
+            }
+
+        }
+
+        wordChoice();
+
+    
+    });
+    </script>
+</body>
+</html>
+
