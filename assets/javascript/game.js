@@ -1,5 +1,5 @@
-$(document).ready(function() {
-    var wordBank = 
+    $(document).ready(function() {
+        var wordBank = 
         [
             "calvin", 
             "hobbes", 
@@ -13,25 +13,61 @@ $(document).ready(function() {
             "eleventeen", 
             "calvinball",
         ];
+        var blankSpaces = [];
+        var spaces;
+        var userGuess;
+        var wordChosen;
+        var remaininLetters;
+        var wrongGuess = [];
 
-    var blankSpaces = []; //shows spaces for word being guessed
-    // var lettersLeft = wordChosen.length; //tracks progress toward end of game
-    // var guessesLeft = wordChosen.length + 5; //number of guesses remaining
-    var wins = 0;
-    var wordChosen;
-    var showWord;
+        function wordChoice() {
+            var wordChosen = wordBank[Math.floor(Math.random() * wordBank.length)];
+            console.log(wordChosen);
+            for (var i = 0; i < wordChosen.length; i++) {
+                blankSpaces[i] = "_";
+            }
+            // blankSpaces.split("");
+            var guessesRemaining = wordChosen.length + 8;
+            remainingLetters = wordChosen.length;
+           
+            document.getElementById("currentWord").innerHTML = blankSpaces.join(" ");
+           
+            document.getElementById("remainingGuesses").innerHTML = guessesRemaining;
+           
+            document.onkeyup = function(event) {
+                guessesRemaining--;
 
-    function wordChoice() {
-        var wordChosen = wordBank[Math.floor(Math.random() * wordBank.length)];
-        // typeof(wordChosen) === "string";
-        // document.getElementById("#currentWord").wordChosen;
-        document.write(wordChosen);
-        console.log(wordChosen);
-        wordChosen = document.getElementById("currentWord");
-    }
+                // Determines which key was pressed.
+                var userGuess = event.key;
+            
+            for (var j = 0; j < wordChosen.length; j++) {
+                if (wordChosen[j] === userGuess) {
+                blankSpaces[j] = userGuess;
+                remainingLetters--;
+                } else if (wordChosen[j] !== userGuess) {
+                    wrongGuess = userGuess;
+                    // wrongGuess.unshift();
+                    document.getElementById("guessedLetters").innerHTML = wrongGuess;
+                }
+                }
+                
+            document.getElementById("currentWord").innerHTML = blankSpaces.join(" ");
+            document.getElementById("remainingGuesses").innerHTML = guessesRemaining;
 
-    wordChoice();
+            }
 
+        }
+
+        wordChoice();
+
+    
+    });
+
+
+
+
+
+// $(
 // //     function drawBlankSpaces() {
 // //         for (var i = 0; i < wordChosen.length; i++) {
 // //             document.write("_ ");
@@ -70,5 +106,5 @@ $(document).ready(function() {
 // //     blankSpaces.join();
 // //     drawBlankSpaces();
 // // 
-});
+// });
 

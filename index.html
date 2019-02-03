@@ -40,76 +40,8 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- <script src="assets/javascript/game.js"></script> -->
-    <div id="empty-div"></div>
-
-    <!-- We now create a new JavaScript script. -->
-    <script type="text/javascript">
-    $(document).ready(function() {
-        var wordBank = 
-        [
-            "calvin", 
-            "hobbes", 
-            "susie", 
-            "rosalyn", 
-            "wormwood", 
-            "moe", 
-            "spacemanspiff", 
-            "watterson", 
-            "transmogrifier", 
-            "eleventeen", 
-            "calvinball",
-        ];
-        var blankSpaces = [];
-        var spaces;
-        var userGuess;
-        var wordChosen;
-        var remaininLetters;
-        var wrongGuess = [];
-
-        function wordChoice() {
-            var wordChosen = wordBank[Math.floor(Math.random() * wordBank.length)];
-            console.log(wordChosen);
-            for (var i = 0; i < wordChosen.length; i++) {
-                blankSpaces[i] = "_";
-            }
-            // blankSpaces.split("");
-            var guessesRemaining = wordChosen.length + 8;
-            remainingLetters = wordChosen.length;
-           
-            document.getElementById("currentWord").innerHTML = blankSpaces.join(" ");
-           
-            document.getElementById("remainingGuesses").innerHTML = guessesRemaining;
-           
-            document.onkeyup = function(event) {
-                guessesRemaining--;
-
-                // Determines which key was pressed.
-                var userGuess = event.key;
-            
-            for (var j = 0; j < wordChosen.length; j++) {
-                if (wordChosen[j] === userGuess) {
-                blankSpaces[j] = userGuess;
-                remainingLetters--;
-                } else if (wordChosen[j] !== userGuess) {
-                    wrongGuess = userGuess;
-                    wrongGuess.unshift();
-                    document.getElementById("guessedLetters").innerHTML = wrongGuess;
-                }
-                }
-                
-            document.getElementById("currentWord").innerHTML = blankSpaces.join(" ");
-            document.getElementById("remainingGuesses").innerHTML = guessesRemaining;
-
-            }
-
-        }
-
-        wordChoice();
-
+    <script src="assets/javascript/game.js"></script>
     
-    });
-    </script>
 </body>
 </html>
 
