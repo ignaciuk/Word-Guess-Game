@@ -13,6 +13,16 @@
             "statistics", 
             "eleventeen", 
             "formula",
+            "linear",
+            "slope",
+            "quadratic",
+            "parabola",
+            "radius",
+            "perimeter",
+            "polygon",
+            "polyhedron",
+            "simulation",
+            "recursive",
         ];
 
         //declares variable blankSpaces as array
