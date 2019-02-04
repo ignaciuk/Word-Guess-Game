@@ -18,23 +18,63 @@
     
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
-                <h1>Calvin & Hobbes Word Guess</h1>
+                <div class="media">
+                        <img src="assets/images/calvin2.gif" class="align-self-center mr-3" alt="calvin and hobbes comic" height="150px">
+                        <div class="media-body">
+                          <h1 class="mt-0">Middle School Math Word Guess</h1>
+                          <p>Instructions: Type the letter you want to guess. Fill the word in fully before your guesses reach 0 to win!</p>
+                        </div>
+                      </div>
+            <!-- <div class="col-lg-3">
+                <img src="assets/images/calvin2.gif" alt="calvin and hobbes comic" height="150px">
             </div>
+            <div class="col-lg-9 textContainer">
+                <h1 class="text-left" style="line-height: 3.5em">Middle School Math Word Guess</h1>
+            </div> -->
         </div>
+        <hr>
         <div class="row">
             <div class="col-lg-4">
-                <h2>Stats</h2>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        <h2>Stats</h2>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="card-header"><h4>Total Wins:</h4></li>
+                        <li class="list-group-item"><h5 id="totalWins"></h5></li>
+                        <li class="card-header"><h4>Current Guesses Remaining:</h4></li>
+                        <li class="list-group-item"><h5 id="remainingGuesses"></h5></li>
+                    </ul>
+                </div>
+                <!-- <h2>Stats</h2>
                 <h4>Total Wins</h4>
                 <h5 id="totalWins"></h5>
                 <h4>Current Guesses Remaining</h4>
-                <h5 id="remainingGuesses"></h5>
+                <h5 id="remainingGuesses"></h5> -->
             </div>
             <div class="col-lg-8">
-                <h3>Current Word</h3>
+                    <div class="card" >
+                            <div class="card-header">
+                                <h2>Current Word</h2>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><h2 id="currentWord"></h2></li>
+                                <li class="card-header"><h4>Letters Guessed</h4></li>
+                                <li class="list-group-item"><h3 id="guessedLetters"></h3></li>
+                            </ul>
+                        </div>
+                <!-- <div class="jumbotron">
+                    <h2 class="display-6">Current Word</h2>
+                    <h3 id="currentWord"></h3>                           
+                     <hr class="my-4">
+                    <h4>Letters Guessed</h4>
+                    <h3 id="guessedLetters"></h3> -->
+                    <!-- <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
+                </div>
+                <!-- <h3>Current Word</h3>
                 <h5 id="currentWord"></h5>
                 <h4>Letters Guessed</h4>
-                <h3 id="guessedLetters"></h3>
+                <h3 id="guessedLetters"></h3> -->
             </div>
         </div>
     </div>

@@ -1,63 +1,105 @@
     $(document).ready(function() {
+        //list of words that will be randomly selected from
         var wordBank = 
         [
-            "calvin", 
-            "hobbes", 
-            "susie", 
-            "rosalyn", 
-            "wormwood", 
-            "moe", 
-            "spacemanspiff", 
-            "watterson", 
-            "transmogrifier", 
+            "circumference", 
+            "proportionality", 
+            "diameter", 
+            "equation", 
+            "expression", 
+            "variable", 
+            "ratio", 
+            "probability", 
+            "statistics", 
             "eleventeen", 
-            "calvinball",
+            "formula",
         ];
-        var blankSpaces = [];
-        var spaces;
-        var userGuess;
-        var wordChosen;
-        var remaininLetters;
-        var wrongGuess = [];
 
+        //declares variable blankSpaces as array
+        var blankSpaces = [];
+        var remainingLetters;
+        var guessesRemaining;
+        var winTotal = 0;
+
+        //defines function for choosing word
         function wordChoice() {
+            userGuess = [];
+            var checkIfGuessed = [];
+            var showWrongGuesses = [];
+            //randomly selects word from wordBank array
             var wordChosen = wordBank[Math.floor(Math.random() * wordBank.length)];
+            //shows randomly selected word in console
             console.log(wordChosen);
+            //draws blank spaces according to length of rnadomly selected word
             for (var i = 0; i < wordChosen.length; i++) {
                 blankSpaces[i] = "_";
             }
-            // blankSpaces.split("");
-            var guessesRemaining = wordChosen.length + 8;
-            remainingLetters = wordChosen.length;
-           
+            //stores a value for how many guesses user has left
+            guessesRemaining = wordChosen.length + 6;
+            //stores a value for how many letters use has left to guess
+            remainingLetters = wordChosen.length;  
+            //shows blank spaces on page
             document.getElementById("currentWord").innerHTML = blankSpaces.join(" ");
-           
+            //shows number of remaining guesses on page
             document.getElementById("remainingGuesses").innerHTML = guessesRemaining;
-           
+            document.getElementById("totalWins").innerHTML = winTotal;
+            //defines function for what happens when user presses a key
             document.onkeyup = function(event) {
+                //reduces guesses by one each time a key is pressed
                 guessesRemaining--;
-
-                // Determines which key was pressed.
+                //determines which key was pressed
                 var userGuess = event.key;
-            
-            for (var j = 0; j < wordChosen.length; j++) {
+                //writes guessed letters on page
+                showWrongGuesses.unshift(" " + userGuess);
+                // showWrongGuesses.join(" ");
+                if (checkIfGuessed.includes(userGuess)) {
+                    alert("You've guessed that letter already.")
+                } else {
+                //loops through the word as an array to check if user guess matches, then updates the blank spaces with user guess at that index number
+        //    while (remainingLetters > 0) {
+                for (var j = 0; j < wordChosen.length; j++) {
                 if (wordChosen[j] === userGuess) {
                 blankSpaces[j] = userGuess;
                 remainingLetters--;
-                } else if (wordChosen[j] !== userGuess) {
-                    wrongGuess = userGuess;
-                    // wrongGuess.unshift();
-                    document.getElementById("guessedLetters").innerHTML = wrongGuess;
+                // break;
+                } else {
+                    // alert("letter is not in word");
+                // break;
                 }
                 }
-                
-            document.getElementById("currentWord").innerHTML = blankSpaces.join(" ");
-            document.getElementById("remainingGuesses").innerHTML = guessesRemaining;
+                checkIfGuessed.push(userGuess);
 
+                if (remainingLetters === 0 && guessesRemaining >= 0) {
+                    winTotal += 1;
+                    alert("Nice Work! Your word was: " + wordChosen);
+                    checkIfGuessed = [];
+                    showWrongGuesses = [];
+                    blankSpaces = [];
+                    wordChoice();
+                } else if (guessesRemaining === 0 && remainingLetters > 0) {
+                    alert("Sorry, you've lost. Your word was: " + wordChosen);
+                    checkIfGuessed = [];
+                    showWrongGuesses = [];
+                    blankSpaces = [];
+                    wordChoice();
+                }
             }
+            // }
+            //shows updated blank spaces, filled in with correctly guessed letters
+            document.getElementById("currentWord").innerHTML = blankSpaces.join(" ");
+            //updates number of remaining guesses
+            document.getElementById("remainingGuesses").innerHTML = guessesRemaining;
+            //shows number of remaining guesses in console
+            document.getElementById("guessedLetters").innerHTML = showWrongGuesses;
+            document.getElementById("totalWins").innerHTML = winTotal;
+            console.log(remainingLetters);
+            console.log("Gueses Remaining:" + guessesRemaining);
+            console.log("Check if guessed:" + checkIfGuessed);
+            console.log("total wins:" + winTotal);
+            };
 
-        }
-
+        };
+        //calls function wordChoice
         wordChoice();
 
     
